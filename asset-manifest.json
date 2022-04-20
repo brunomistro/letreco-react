@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/letreco-react/static/css/main.73ef29fe.css",
+    "main.js": "/letreco-react/static/js/main.be23c233.js",
+    "index.html": "/letreco-react/index.html",
+    "main.73ef29fe.css.map": "/letreco-react/static/css/main.73ef29fe.css.map",
+    "main.be23c233.js.map": "/letreco-react/static/js/main.be23c233.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73ef29fe.css",
+    "static/js/main.be23c233.js"
+  ]
+}
