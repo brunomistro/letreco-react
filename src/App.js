@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
+
 export default function App() {
+	const [solution, setSolution] = useState(null)
+
+	useEffect(() => {
+		fetch("http://localhost:3001/solutions")
+		.then(res => res.json())
+		.then(data => {
+			// Math.floor - e.g. 4.97 = 4, 3.1 = 3
+			// Math.random - any number between 0 and 1, e.g. 0,6911
+			// So we get an random number and multiple that by the array length and e floor that number
+			const random = data[Math.floor(Math.random() * data.length)]
+			setSolution(random.word)
+		})
+	},[setSolution])
+
   return (
     <div className="App">
       <h1>Letreco (Wordle)</h1>
+			{solution && (<div>Solution is: {solution}</div>)}
     </div>
   );
 }
