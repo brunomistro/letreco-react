@@ -12,6 +12,9 @@ export default function Wordle({ solution }) {
 	
 
 	return (
-		<div>current guess - {currentGuess}</div>
+		<div>
+			<div>solution - {solution}</div>
+			<div>current guess - {currentGuess}</div>
+		</div>
 	)
 }
