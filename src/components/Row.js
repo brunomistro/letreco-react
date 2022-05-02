@@ -19,7 +19,6 @@ export default function Row({ guess }) {
 			<div></div>
 			<div></div>
 			<div></div>
-			<div></div>
 		</div>
 	)
 }
