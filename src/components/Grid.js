@@ -5,7 +5,7 @@ export default function Grid({ guesses, currrentGuess, turn }) {
 	return (
 		<div>
 			{guesses.map((guess, index) => {
-				return <Row key={index} />
+				return <Row key={index} guess={guess} />
 			})}
 		</div>
 	)
