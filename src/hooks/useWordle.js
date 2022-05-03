@@ -53,7 +53,6 @@ const useWordle = (solution) => {
 	// handle keyup event & track current guess
   // if user presses enter, add the new guess
   const handleKeyup = ({ key }) => {
-		console.log(key);
 		const regex = /^[A-Za-z]$/;
 
 		if(key === "Enter") {

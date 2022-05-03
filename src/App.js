@@ -1,19 +1,33 @@
 import { useEffect, useState } from "react";
 import Wordle from "./components/Wordle";
 
+const dataBase = [
+	{"id": 1, "word": "ninja"},
+	{"id": 2, "word": "spade"},
+	{"id": 3, "word": "pools"},
+	{"id": 4, "word": "drive"},
+	{"id": 5, "word": "relax"},
+	{"id": 6, "word": "times"},
+	{"id": 7, "word": "train"},
+	{"id": 8, "word": "cores"},
+	{"id": 9, "word": "pours"},
+	{"id": 10, "word": "blame"},
+	{"id": 11, "word": "banks"},
+	{"id": 12, "word": "phone"},
+	{"id": 13, "word": "bling"},
+	{"id": 14, "word": "coins"},
+	{"id": 15, "word": "hello"}
+];
+
 export default function App() {
 	const [solution, setSolution] = useState(null)
 
 	useEffect(() => {
-		fetch("http://localhost:3001/solutions")
-		.then(res => res.json())
-		.then(data => {
-			// Math.floor - e.g. 4.97 = 4, 3.1 = 3
-			// Math.random - any number between 0 and 1, e.g. 0,6911
-			// So we get an random number and multiple that by the array length and e floor that number
-			const random = data[Math.floor(Math.random() * data.length)]
-			setSolution(random.word)
-		})
+		// Math.floor - e.g. 4.97 = 4, 3.1 = 3
+		// Math.random - any number between 0 and 1, e.g. 0,6911
+		// So we get an random number and multiple that by the array length and e floor that number
+		const random = dataBase[Math.floor(Math.random() * dataBase.length)]
+		setSolution(random.word)
 	},[setSolution])
 
   return (
