@@ -14,7 +14,6 @@ export default function Wordle({ solution }) {
 	useEffect(() => {
 		console.log(guesses, turn, isCorrect);
 	}, [guesses, turn, isCorrect])
-	
 
 	return (
 		<div>

@@ -1,12 +1,13 @@
 import React from 'react'
 import Row from './Row'
 
-export default function Grid({ guesses, currrentGuess, turn }) {
+export default function Grid({ guesses, currentGuess, turn }) {
+	
 	return (
 		<div>
 			{guesses.map((guess, index) => {
 				if(turn === index) {
-					return <Row key={index} currrentGuess={currrentGuess} />
+					return <Row key={index} currentGuess={currentGuess} />
 				}
 				return <Row key={index} guess={guess} />
 			})}
