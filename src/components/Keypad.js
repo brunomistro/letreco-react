@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useSyncExternalStore } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const keypadArray = [
 	{"key": "a"},
