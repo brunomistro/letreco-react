@@ -2,7 +2,7 @@ export default function Modal({ isCorrect, solution, turn }) {
 	return (
 		<div className="modal">
 			<div>
-			<p className="solution">{solution}</p>
+				<p className="solution">{solution}</p>
 				{isCorrect && (
 					<>
 						<h1>You Win!</h1>
