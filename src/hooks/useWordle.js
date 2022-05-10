@@ -3,12 +3,11 @@ import { useState } from "react"
 const useWordle = (solution) => {
 	const [turn, setTurn] = useState(0)
 	const [currentGuess, setCurrentGuess] = useState('')
-  const [guesses, setGuesses] = useState([...Array(6)]) // each guess is an array
-  const [history, setHistory] = useState([]) // each guess is a string
+  const [guesses, setGuesses] = useState([...Array(6)])
+  const [history, setHistory] = useState([])
   const [isCorrect, setIsCorrect] = useState(false)
+	const [usedKeys, setUsedKeys] = useState({})
 
-	// format a guess into an array of letter objects 
-  // e.g. [{key: 'a', color: 'yellow'}]
 	const formatGuess = () => {
 		let solutionArray = [...solution]
 
@@ -32,14 +31,10 @@ const useWordle = (solution) => {
 
     return formattedGuess
 	}
-
-	// add a new guess to the guesses state
-  // update the isCorrect state if the guess is correct
-  // add one to the turn state
+	
 	const addNewGuess = (formattedGuess) => {
-		if(currentGuess === solution) {
-			setIsCorrect(true)
-		}
+		if(currentGuess === solution) setIsCorrect(true)
+		
 		setGuesses((prevGuesses) => {
 			let newGuesses = [...prevGuesses]
 			newGuesses[turn] = formattedGuess
@@ -47,29 +42,35 @@ const useWordle = (solution) => {
 		})
 		setHistory(prevHistory => { return [...prevHistory, currentGuess] })
 		setTurn((prevTurn) => { return prevTurn + 1 })
+		setUsedKeys(prevUsedKeys => {
+      formattedGuess.forEach(l => {
+        const currentColor = prevUsedKeys[l.key]
+
+        if (l.color === 'green') {
+          prevUsedKeys[l.key] = 'green'
+          return
+        }
+        if (l.color === 'yellow' && currentColor !== 'green') {
+          prevUsedKeys[l.key] = 'yellow'
+          return
+        }
+        if (l.color === 'grey' && currentColor !== ('green' || 'yellow')) {
+          prevUsedKeys[l.key] = 'grey'
+          return
+        }
+      })
+
+      return prevUsedKeys
+    })
 		setCurrentGuess("")
 	}
-
-	// handle keyup event & track current guess
-  // if user presses enter, add the new guess
   const handleKeyup = ({ key }) => {
 		const regex = /^[A-Za-z]$/;
 
 		if(key === "Enter") {
-			if (turn > 5) {
-        console.log('you used all your guesses!')
-        return
-      }
-			
-      if (history.includes(currentGuess)) {
-        console.log('you already tried that word.')
-        return
-      }
-			
-      if (currentGuess.length !== 5) {
-        console.log('word must be 5 chars.')
-        return
-      }
+			if (turn > 5) return
+      if (history.includes(currentGuess)) return
+      if (currentGuess.length !== 5) return
 			
 			const formatted = formatGuess()
 			addNewGuess(formatted)
@@ -87,7 +88,7 @@ const useWordle = (solution) => {
 		}
   }
 
-	return {turn, currentGuess, guesses, isCorrect, handleKeyup}
+	return {turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup}
 }
 
 export default useWordle
