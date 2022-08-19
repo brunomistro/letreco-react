@@ -15,7 +15,7 @@ export default function Modal({ isCorrect, solution, turn }) {
 						<p>See u later Boy :)</p>
 					</>
 				)}
-				<a href="/"><button>Try Again</button></a>
+				<a href="/letreco-react"><button>Try Again</button></a>
 			</div>
 		</div>
 	)
